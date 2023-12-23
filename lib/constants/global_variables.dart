@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
-String uri = 'http://<yourip>:3000';
+
+String baseURL = "http://192.168.1.5:5000/api";
+
+String signupURL = "/auth/signup";
+
+
+
+
+
 
 class GlobalVariables {
   // COLORS

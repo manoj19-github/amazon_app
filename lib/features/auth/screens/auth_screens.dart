@@ -1,3 +1,5 @@
+import 'package:amazon/services/auth_service.dart';
+import 'package:amazon/utils/showSnackbar.dart';
 import 'package:amazon/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:amazon/constants/global_variables.dart';
@@ -13,21 +15,33 @@ class AuthStateScreen extends StatefulWidget {
 
 class _AuthStateScreenState extends State<AuthStateScreen> {
   final _formKey = GlobalKey<FormState>();
+  final AuthService authService = AuthService();
+  
   bool isSignup = false;
   var _username;
   var _email;
   var _password;
+  void onSuccessMethod() {
+    setState(() {
+      isSignup = false;
+      _formKey.currentState?.reset();
+    });
+  }
   void saveFormHandler(){
+    FocusScopeNode currentFocus = FocusScope.of(context);
+    if (!currentFocus.hasPrimaryFocus) {
+      currentFocus.unfocus();
+    }
       if (_formKey.currentState!.validate()) {
         
         _formKey.currentState!.save();
         if(isSignup==true){
-          var payload={
-            'email':_email,
-            'password':_password,
-            'username':_username
-          };
-          print(payload);
+        authService.signUpUser(
+            email: _email,
+            context: context,
+            password: _password,
+            username: _username,
+            onSuccessMethod: onSuccessMethod);
           
         }else{
           var payload={
@@ -37,6 +51,8 @@ class _AuthStateScreenState extends State<AuthStateScreen> {
           print(payload);
         }
 
+    } else {
+      showSnackBar(context, "Please check all input field");
       }
 
   }
@@ -73,7 +89,7 @@ class _AuthStateScreenState extends State<AuthStateScreen> {
                               const SizedBox(height: 45),
                               isSignup ?
                               SizedBox(
-                                height: 60,
+                                    height: 80,
                                 child: TextFormField(
                                     maxLength: 50,
                                     decoration: const InputDecoration(
@@ -134,7 +150,7 @@ class _AuthStateScreenState extends State<AuthStateScreen> {
                                     validator: (value){
                                       if (value == null ||
                                           value.isEmpty ||
-                                          value.trim().length <= 5 ||
+                                        value.trim().length < 5 ||
                                           value.trim().length > 20)
                                         return 'Must be between 5 to 20 character';
                                     
@@ -144,7 +160,7 @@ class _AuthStateScreenState extends State<AuthStateScreen> {
                                 }),
                               ),
                            
-                               const SizedBox(height: 20),
+                            const SizedBox(height: 22),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 minimumSize: Size.fromHeight(40),),
