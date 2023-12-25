@@ -1,8 +1,8 @@
 
 
 import 'package:amazon/common/widgets/custom_page_route.dart';
-import 'package:amazon/features/auth/screens/auth_screens.dart';
-import 'package:amazon/features/auth/screens/home_screen.dart';
+import 'package:amazon/features/screens/auth_screens.dart';
+import 'package:amazon/features/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings){

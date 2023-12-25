@@ -1,6 +1,6 @@
 import 'package:amazon/constants/global_variables.dart';
-import 'package:amazon/features/auth/screens/account_screen.dart';
-import 'package:amazon/features/auth/screens/home_screen.dart';
+import 'package:amazon/features//screens/account_screen.dart';
+import 'package:amazon/features/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_badged/badge_position.dart';
 import 'package:flutter_badged/flutter_badge.dart';

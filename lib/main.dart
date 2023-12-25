@@ -1,8 +1,8 @@
 import 'package:amazon/common/utility/router.dart';
 import 'package:amazon/common/widgets/bottom_bar.dart';
 import 'package:amazon/constants/global_variables.dart';
-import 'package:amazon/features/auth/screens/auth_screens.dart';
-import 'package:amazon/features/auth/screens/home_screen.dart';
+import 'package:amazon/features/screens/auth_screens.dart';
+import 'package:amazon/features/screens/home_screen.dart';
 import 'package:amazon/providers/user_provider.dart';
 import 'package:amazon/services/auth_service.dart';
 import 'package:amazon/theme/theme_constants.dart';

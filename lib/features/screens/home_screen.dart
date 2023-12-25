@@ -1,5 +1,9 @@
 import 'package:amazon/common/widgets/bottom_bar.dart';
 import 'package:amazon/constants/global_variables.dart';
+import 'package:amazon/features/screens/widgets/address_box.dart';
+import 'package:amazon/features/screens/widgets/carousal_image.dart';
+import 'package:amazon/features/screens/widgets/deal_of_day.dart';
+import 'package:amazon/features/screens/widgets/top_category.dart';
 import 'package:amazon/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -84,8 +88,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: Column(
-        children: [],
+      body: SingleChildScrollView(
+        child: Column(
+          children: const [
+            AddressBox(),
+            SizedBox(height: 10),
+            TopCategory(),
+            SizedBox(height: 10),
+            CarousalImage(),
+            DealOfDay()
+          ],
+        ),
       ),
     );
   }

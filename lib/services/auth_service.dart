@@ -2,7 +2,7 @@ import "dart:convert";
 
 import "package:amazon/constants/global_variables.dart";
 import "package:amazon/constants/http_callback.dart";
-import "package:amazon/features/auth/screens/home_screen.dart";
+import "package:amazon/features/screens/home_screen.dart";
 import "package:amazon/models/user_model.dart";
 import "package:amazon/providers/user_provider.dart";
 import "package:amazon/utils/showSnackbar.dart";
