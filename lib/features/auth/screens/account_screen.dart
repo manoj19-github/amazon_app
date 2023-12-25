@@ -1,4 +1,5 @@
 import 'package:amazon/common/widgets/below_appbar.dart';
+import 'package:amazon/common/widgets/orders.dart';
 import 'package:amazon/common/widgets/top_buttons.dart';
 import 'package:amazon/constants/global_variables.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,14 @@ class _AccountScreenState extends State<AccountScreen> {
           ),
         ),
         body: Column(
-          children: [BelowAppBar(), const SizedBox(height: 20), TopButtons()],
-        ));
+        children: [
+          BelowAppBar(),
+          const SizedBox(height: 20),
+          TopButtons(),
+          SizedBox(height: 20),
+          OrdersWidget(),
+        ],
+      ),
+    );
   }
 }

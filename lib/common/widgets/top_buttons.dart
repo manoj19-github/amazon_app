@@ -26,6 +26,7 @@ class _TopButtonsState extends State<TopButtons> {
             AccountButton(text: 'Log Out', onTapAction: () {}),
           ],
         ),
+        const SizedBox(height: 15),
       ],
     );
   }

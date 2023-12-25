@@ -22,8 +22,8 @@ class BelowAppBar extends StatelessWidget {
                 style: const TextStyle(fontSize: 22, color: Colors.black),
                 children: [
                   TextSpan(
-                    text:
-                        "${user.username[0].toUpperCase()}${user.username.substring(1).toLowerCase()}",
+                    text: user.username,
+                 
                     style: const TextStyle(
                         fontSize: 22,
                         color: Colors.black,

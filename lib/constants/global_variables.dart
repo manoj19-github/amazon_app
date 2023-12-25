@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-String baseURL = "http://192.168.1.4:5000/api";
+String baseURL = "http://192.168.1.3:5000/api";
 
 String signupURL = "/auth/signup";
 
