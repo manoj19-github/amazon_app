@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 
-String baseURL = "http://192.168.1.5:5000/api";
+String baseURL = "http://192.168.1.4:5000/api";
 
 String signupURL = "/auth/signup";
+
+String signinURL = "/auth/signin";
+String getUserURL = "/auth/getuser";
 
 
 
@@ -24,8 +27,9 @@ class GlobalVariables {
   static const  Color textHeadlineColor = Color(0x00CD6E);
   static const backgroundColor = Colors.white;
   static const Color greyBackgroundCOlor = Color(0xffebecee);
-  static var selectedNavBarColor = Colors.cyan[800]!;
-  static const unselectedNavBarColor = Colors.black87;
+  static var selectedNavBarColor = Color.fromARGB(255, 29, 201, 192);
+  static const unselectedNavBarColor = Colors.grey;
+  static const unseelectedNavBorder = Colors.white;
 
   // STATIC IMAGES
   static const List<String> carouselImages = [

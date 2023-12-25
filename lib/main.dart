@@ -1,12 +1,17 @@
 import 'package:amazon/common/utility/router.dart';
+import 'package:amazon/common/widgets/bottom_bar.dart';
 import 'package:amazon/constants/global_variables.dart';
 import 'package:amazon/features/auth/screens/auth_screens.dart';
+import 'package:amazon/features/auth/screens/home_screen.dart';
+import 'package:amazon/providers/user_provider.dart';
+import 'package:amazon/services/auth_service.dart';
 import 'package:amazon/theme/theme_constants.dart';
 import 'package:amazon/theme/theme_manager.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +20,11 @@ void main() {
     DeviceOrientation.portraitDown
   ]);
   runApp(
-    MyApp(),
+    MultiProvider(providers: [
+      ChangeNotifierProvider(
+        create: (context) => UserProvider(),
+      ),
+    ], child: MyApp()),
   );
 }
 
@@ -31,6 +40,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
 
+  final AuthService authService = AuthService();
+
+
   @override
   void initState() {
     if (kDebugMode) {
@@ -38,6 +50,7 @@ class _MyAppState extends State<MyApp> {
     }
     _themeManager.addListener(themeListener);
     super.initState();
+    authService.getUserDetailsFromToken(context: context);
   }
 
   @override
@@ -64,12 +77,19 @@ class _MyAppState extends State<MyApp> {
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Sanrta Docs',
+        
         theme: lightTheme,
         darkTheme: darkTheme,
+    
         themeMode: ThemeMode.system, // _themeManager.themeMode,
         onGenerateRoute: (settings) => generateRoute(settings),
-        home: AuthStateScreen()
+        
+        home: Provider.of<UserProvider>(context).user.id.isNotEmpty
+            ? AuthStateScreen()
+            : BottomBar(),
+          
       ),
+      
     );
   }
 }

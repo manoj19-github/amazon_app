@@ -18,20 +18,30 @@ class _AuthStateScreenState extends State<AuthStateScreen> {
   final AuthService authService = AuthService();
   
   bool isSignup = false;
+  bool isApiLoading = false;
   var _username;
   var _email;
   var _password;
-  void onSuccessMethod() {
+  void onSuccessMethodForSignup() {
     setState(() {
       isSignup = false;
       _formKey.currentState?.reset();
     });
   }
+  void apiLoadingMethod() {
+    setState(() {
+      isApiLoading = !isApiLoading;
+    });
+  }
   void saveFormHandler(){
     FocusScopeNode currentFocus = FocusScope.of(context);
+    if (isApiLoading == true) return;
+    print("hit ");
+  
     if (!currentFocus.hasPrimaryFocus) {
       currentFocus.unfocus();
     }
+    
       if (_formKey.currentState!.validate()) {
         
         _formKey.currentState!.save();
@@ -41,14 +51,16 @@ class _AuthStateScreenState extends State<AuthStateScreen> {
             context: context,
             password: _password,
             username: _username,
-            onSuccessMethod: onSuccessMethod);
+            apiLoadingMethod: apiLoadingMethod,
+            onSuccessMethod: onSuccessMethodForSignup);
           
         }else{
-          var payload={
-            'email':_email,
-            'password':_password
-          };
-          print(payload);
+        authService.signInUser(
+            email: _email,
+            context: context,
+            password: _password,
+            apiLoadingMethod: apiLoadingMethod,
+            onSuccessMethod: () {});
         }
 
     } else {
@@ -162,10 +174,20 @@ class _AuthStateScreenState extends State<AuthStateScreen> {
                            
                             const SizedBox(height: 22),
                             ElevatedButton(
+                              
                               style: ElevatedButton.styleFrom(
                                 minimumSize: Size.fromHeight(40),),
                         onPressed: saveFormHandler,
-                        child: const Text('Submit',style:TextStyle(color:Colors.white,fontSize: 18),),),
+                              child: isApiLoading
+                                  ? Center(
+                                      child: CircularProgressIndicator(
+                                          color: Colors.white))
+                                  : Text(
+                                      'Submit',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 18),
+                                    ),
+                            ),
                            const SizedBox(height: 10),
                               isSignup ? 
                               Row(
