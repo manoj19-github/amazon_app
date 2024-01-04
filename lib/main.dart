@@ -1,6 +1,7 @@
 import 'package:amazon/common/utility/router.dart';
 import 'package:amazon/common/widgets/bottom_bar.dart';
 import 'package:amazon/constants/global_variables.dart';
+import 'package:amazon/features/admin/screens/admin_screen.dart';
 import 'package:amazon/features/screens/auth_screens.dart';
 import 'package:amazon/features/screens/home_screen.dart';
 import 'package:amazon/providers/user_provider.dart';
@@ -85,8 +86,10 @@ class _MyAppState extends State<MyApp> {
         onGenerateRoute: (settings) => generateRoute(settings),
         
         home: Provider.of<UserProvider>(context).user.id.isNotEmpty
-            ? AuthStateScreen()
-            : BottomBar(),
+              ? Provider.of<UserProvider>(context).user.usertype == "user"
+                  ? BottomBar()
+                  : const AdminScreen()
+              : const AdminScreen()
           
       ),
       

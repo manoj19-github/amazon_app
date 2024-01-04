@@ -32,10 +32,68 @@ class _DealOfDayState extends State<DealOfDay> {
         ),
         Container(
           alignment: Alignment.topLeft,
-          padding: const EdgeInsets.only(left: 14, top: 5, right: 20),
+          padding: const EdgeInsets.only(left: 14, top: 10),
+          child: Text("\$100 ", maxLines: 2, overflow: TextOverflow.ellipsis),
+        ),
+        Container(
+          alignment: Alignment.topLeft,
+          padding: const EdgeInsets.only(left: 14, top: 3, right: 20),
           child: Text("Manoj Santra's Product ",
               maxLines: 2, overflow: TextOverflow.ellipsis),
         ),
+        const SizedBox(height: 20),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              Image.network(
+                  "https://img.freepik.com/free-photo/basic-green-shirt-men-rsquo-s-fashion-apparel-studio-shoot_53876-101197.jpg?w=360&t=st=1704336121~exp=1704336721~hmac=c590bf84577179f18cc4f50c92b60774544aa76321192a021b5fc963c0268b88",
+                  fit: BoxFit.fitWidth,
+                  width: 100,
+                  height: 100),
+              const SizedBox(width: 10),
+              Image.network(
+                  "https://img.freepik.com/free-photo/basic-green-shirt-men-rsquo-s-fashion-apparel-studio-shoot_53876-101197.jpg?w=360&t=st=1704336121~exp=1704336721~hmac=c590bf84577179f18cc4f50c92b60774544aa76321192a021b5fc963c0268b88",
+                  fit: BoxFit.fitWidth,
+                  width: 100,
+                  height: 100),
+              const SizedBox(width: 10),
+              Image.network(
+                  "https://img.freepik.com/free-photo/basic-green-shirt-men-rsquo-s-fashion-apparel-studio-shoot_53876-101197.jpg?w=360&t=st=1704336121~exp=1704336721~hmac=c590bf84577179f18cc4f50c92b60774544aa76321192a021b5fc963c0268b88",
+                  fit: BoxFit.fitWidth,
+                  width: 100,
+                  height: 100),
+              const SizedBox(width: 10),
+              Image.network(
+                  "https://img.freepik.com/free-photo/basic-green-shirt-men-rsquo-s-fashion-apparel-studio-shoot_53876-101197.jpg?w=360&t=st=1704336121~exp=1704336721~hmac=c590bf84577179f18cc4f50c92b60774544aa76321192a021b5fc963c0268b88",
+                  fit: BoxFit.fitWidth,
+                  width: 100,
+                  height: 100),
+              const SizedBox(width: 10),
+              Image.network(
+                  "https://img.freepik.com/free-photo/basic-green-shirt-men-rsquo-s-fashion-apparel-studio-shoot_53876-101197.jpg?w=360&t=st=1704336121~exp=1704336721~hmac=c590bf84577179f18cc4f50c92b60774544aa76321192a021b5fc963c0268b88",
+                  fit: BoxFit.fitWidth,
+                  width: 100,
+                  height: 100),
+              const SizedBox(width: 10),
+              Image.network(
+                  "https://img.freepik.com/free-photo/basic-green-shirt-men-rsquo-s-fashion-apparel-studio-shoot_53876-101197.jpg?w=360&t=st=1704336121~exp=1704336721~hmac=c590bf84577179f18cc4f50c92b60774544aa76321192a021b5fc963c0268b88",
+                  fit: BoxFit.fitWidth,
+                  width: 100,
+                  height: 100),
+            ],
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 15).copyWith(left: 15),
+          alignment: Alignment.topLeft,
+          child: Text(
+            'See all deals',
+            style: TextStyle(color: Colors.cyan[800]),
+          ),
+        ),
+        const SizedBox(height: 16)
       ],
     );
   }

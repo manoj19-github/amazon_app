@@ -2,6 +2,7 @@ import "dart:convert";
 
 import "package:amazon/constants/global_variables.dart";
 import "package:amazon/constants/http_callback.dart";
+import "package:amazon/features/admin/screens/admin_screen.dart";
 import "package:amazon/features/screens/home_screen.dart";
 import "package:amazon/models/user_model.dart";
 import "package:amazon/providers/user_provider.dart";
@@ -104,11 +105,22 @@ class AuthService {
             await prefs.setString('auth-token', jsonDecode(res.body)['token']);
             Provider.of<UserProvider>(context, listen: false)
                 .setUser(jsonEncode(jsonDecode(res.body)["user"]));
-            Navigator.pushNamedAndRemoveUntil(
+
+            if (jsonDecode(res.body)["user"]["usertype"] == "admin") {
+              print("admin print");
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                AdminScreen.routeName,
+                (route) => false,
+              );
+            } else {
+              Navigator.pushNamedAndRemoveUntil(
               context,
               HomeScreen.routeName,
               (route) => false,
             );
+            }
+            
             // showSnackBar(
             //     context, "Account created! Login with the same credential");
           });
