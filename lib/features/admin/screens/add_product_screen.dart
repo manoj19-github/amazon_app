@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:amazon/common/widgets/custom_button.dart';
 import 'package:amazon/common/widgets/custom_textfield.dart';
 import 'package:amazon/constants/global_variables.dart';
 import 'package:amazon/features/admin/screens/post_sccreen.dart';
 import 'package:amazon/features/screens/account_screen.dart';
+import 'package:amazon/utils/pickImage.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
@@ -24,12 +28,22 @@ class _AddProductScreenState extends State<AddProductScreen> {
   double bottomBarBorderWidth = 5;
   int _onItemTapped = 0;
   String category = "Mobiles";
+  List<File> images = [];
   List<String> productCategories = [
     'Mobiles',
     'Essenticals',
     'Appliances',
     'Fashion'
   ];
+
+  void selectImages() async {
+    var res = await pickImages();
+    print("manoj");
+    print(res);
+    setState(() {
+      images = res;
+    });
+  }
 
   void goBack(BuildContext context) {
     Navigator.pop(context);
@@ -80,31 +94,48 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   const EdgeInsets.symmetric(vertical: 12, horizontal: 8.0),
               child: Column(
                 children: [
-                  DottedBorder(
-                    borderType: BorderType.RRect,
-                    radius: const Radius.circular(10),
-                    dashPattern: [10, 4],
-                    strokeCap: StrokeCap.round,
-                    child: Container(
-                        width: double.infinity,
-                        height: 140,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.folder_open,
-                              size: 40,
-                              color: Colors.grey,
-                            ),
-                            // const SizedBox(height: 15),
-                            Text('Select Product Images',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.grey.shade400))
-                          ],
-                        )),
+                  images.isNotEmpty
+                      ? CarouselSlider(
+                          items: images.map((self) {
+                            return Builder(
+                              builder: (BuildContext context) => Image.file(
+                                  self,
+                                  fit: BoxFit.cover,
+                                  height: 200),
+                            );
+                          }).toList(),
+                          options:
+                              CarouselOptions(viewportFraction: 1, height: 200),
+                        )
+                      : GestureDetector(
+                          onTap: selectImages,
+                          child: DottedBorder(
+                            borderType: BorderType.RRect,
+                            radius: const Radius.circular(10),
+                            dashPattern: [10, 4],
+                            strokeCap: StrokeCap.round,
+                            child: Container(
+                                width: double.infinity,
+                                height: 140,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Icon(
+                                      Icons.folder_open,
+                                      size: 40,
+                                      color: Colors.grey,
+                                    ),
+                                    // const SizedBox(height: 15),
+                                    Text('Select Product Images',
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.grey.shade400))
+                                  ],
+                                )),
+                          ),
                   ),
                   const SizedBox(height: 40),
                   CustomTextField(
