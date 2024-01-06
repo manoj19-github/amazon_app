@@ -1,6 +1,7 @@
 
 
 import 'package:amazon/common/widgets/custom_page_route.dart';
+import 'package:amazon/features/admin/screens/add_product_screen.dart';
 import 'package:amazon/features/admin/screens/admin_screen.dart';
 import 'package:amazon/features/screens/auth_screens.dart';
 import 'package:amazon/features/screens/home_screen.dart';
@@ -14,6 +15,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings){
       return CustomPageRoute2(
         child: HomeScreen(),
       );
+    case AddProductScreen.routeName:
+      return CustomPageRoute2(
+        child: AddProductScreen(),
+      );
+
     case AdminScreen.routeName:
       return CustomPageRoute2(
         child: AdminScreen(),
