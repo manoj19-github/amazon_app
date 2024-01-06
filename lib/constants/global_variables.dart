@@ -29,7 +29,9 @@ class GlobalVariables {
   static var selectedNavBarColor = Color.fromARGB(255, 29, 201, 192);
   static const unselectedNavBarColor = Colors.grey;
   static const unseelectedNavBorder = Colors.white;
-
+  static const cloudinary_cloud_name = "dplwrlhqo";
+  static const cloudinary_api_key = "999671642615319";
+  static const cloudinary_api_secret = "Fi3IG2LVmj0OAS69LjMbgpHhD6o";
   // STATIC IMAGES
   static const List<String> carouselImages = [
     'https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/WLA/TS/D37847648_Accessories_savingdays_Jan22_Cat_PC_1500.jpg',
