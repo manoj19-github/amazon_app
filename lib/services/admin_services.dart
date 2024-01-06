@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:amazon/constants/global_variables.dart';
+import 'package:amazon/models/product_model.dart';
 import 'package:amazon/utils/showSnackbar.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,13 @@ class AdminServices {
         );
         imageURLS.add(res.secureUrl);
       }
+      Product product = Product(
+          category: category,
+          name: name,
+          description: description,
+          price: price,
+          quantity: qty,
+          images: imageURLS);
     } catch (error) {
       showSnackBar(context, error.toString());
     }
